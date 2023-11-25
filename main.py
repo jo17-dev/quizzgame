@@ -14,8 +14,8 @@ def main():
             os.system("cls")
             main()
         case 2:
-            print("======= Modifier un quizz ======")
-            modifier_quizz()
+            print("======= Suprimer un quizz ======")
+            supprimer_quizz()
             main()
         case 3:
             print("======= Jouer un quizz =======")

@@ -4,7 +4,7 @@ def print_menu_option():
         """
             ====== Quizz Game =======
             1- creer un quizz
-            2- modifier un quizz
+            2- Suprimmer un quizz
             3- jouer un quizz
             4- quitter
         """
