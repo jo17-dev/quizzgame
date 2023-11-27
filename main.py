@@ -23,7 +23,12 @@ def main():
 
             main()
         case 4:
+            print("======= Modifier un quizz ==============")
+            modifier_quizz()
+            main()
+        case 5:
             print("======= Quitter ==============")
+
 
     # file_manager().lire_fichier("./src/back/files/quiz_test.csv")
     

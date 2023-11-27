@@ -76,7 +76,7 @@ def creer_quizz()->bool:
         data.append(input("Entrer un autre choix de reponse: > "))
         data.append(input("Entrer un autre choix de reponse: > "))
         data.append(
-            "Facile" if niveau == "1" else ("Moyene" if niveau == "2" else "3" ) 
+            "Facile" if niveau == "1" else ("Moyene" if niveau == "2" else "Dificile" ) 
         )
         annecdote_voulu = True if input("Voulez-vous une annecdote pour la question \n (1: oui   0: non ) ? > ") == "1" else False
         data.append(input("Entrez une annecdote pour la question: >")) if annecdote_voulu else ""
@@ -179,9 +179,65 @@ def jouer_quizz()-> bool:
             quizz_nombre(2, 2, 2, data)
 
 
-def modifier_quizz():
+def modifier_quizz()->bool:
+    # menu_modifier_quizz()
+
     print('++ Modifier un quizz')
-    file_name = input("Entrer un nom de fichier")
+    file_name = input("Entrer un nom de fichier: > ")
+    if not check_if_exists(file_name):
+        return False
+    
+    fichier = open(BASE_PATH+file_name+".csv", "r+", encoding='utf-8')
+    i=0
+    item_id = []
+    fichier_lines = fichier.readlines()
+    for line in fichier_lines:
+        item_id.append(i)
+        i += 1
+        line_table = line.split(";")
+        print(item_id[len(item_id) - 1] , ": ", line_table[0])
+
+    response = int(input("\n ==== Entrer le chiffre corespondant a la question: > "))
+    
+    while 1:
+        if response not in item_id:
+            response = int(input("\n ==== Mauvais choix. réessayez : > "))
+        else:
+            break
+    print(fichier_lines[response])
+
+    print("""
+    1- Modifier la question
+    2- Modifier les choix
+    3- Modifier l'annecdote
+    4- suprimmer l'annecdote
+    5- Suprimmer la question
+    """)
+    action_response = input("faire un choix: > ")
+    while 1:
+        if action_response not in ["1", "2", "3", "4", "5"]:
+            action_response = input("Mauvais choix: reessayez: > ")
+        else:
+            break
+
+    match action_response:
+        case "1":
+            print("Modification de la question: ")
+            new_data = input("Récrire la question: > ")
+            line = fichier_lines[response]
+            line = line.split(";")
+            line[0] = new_data
+            fichier_lines[response] = ";".join(line)
+            fichier.close()
+            fichier = open(BASE_PATH+file_name+".csv", "w", encoding='utf-8')
+
+            for item in fichier_lines:
+                fichier.write(item)
+
+            print("== opération terminée")
+            fichier.close()
+        case "2":
+        print("Modification des choix"):
 
 
 def supprimer_quizz():
