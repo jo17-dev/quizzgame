@@ -1,6 +1,8 @@
 from src.front.ui import *
-from src.back.utils.file_manager import *
 from src.back.utils.quizz_function import *
+from src.back.utils.modifier_quiz import modifier_quizz
+from src.back.utils.creer_quiz import creer_quizz
+from src.back.utils.suprimer_quiz import supprimer_quizz
 import os
 
 def main():
@@ -20,7 +22,6 @@ def main():
         case 3:
             print("======= Jouer un quizz =======")
             jouer_quizz()
-
             main()
         case 4:
             print("======= Modifier un quizz ==============")
@@ -28,9 +29,6 @@ def main():
             main()
         case 5:
             print("======= Quitter ==============")
-
-
-    # file_manager().lire_fichier("./src/back/files/quiz_test.csv")
     
 os.system("cls")
 main()

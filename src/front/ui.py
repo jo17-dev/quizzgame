@@ -16,3 +16,20 @@ def print_menu_option():
         return print_menu_option()
     else:
         return response
+    
+
+
+def menu_modifier_quizz():
+    print("""
+1- Modifier la question
+2- Modifier les choix
+3- Modifier l'annecdote
+4- Suprimmer la question
+""")
+    action_response = input("faire un choix: > ")
+    while 1:
+        if action_response not in ["1", "2", "3", "4"]:
+            action_response = input("Mauvais choix: reessayez: > ")
+        else:
+            break
+    return action_response
